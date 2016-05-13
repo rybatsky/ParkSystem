@@ -45,7 +45,7 @@
         <td>${tasks.comments}</td>
         <td>${tasks.done}</td>
         <td>${tasks.confirmed}</td>
-        <td><a href="/task/done?taskId=${tasks.taskId}">${editDone}</a></td>
+        <td><a href="/forester/task/done?taskId=${tasks.taskId}">${editDone}</a></td>
     </tr>
         </c:forEach>
 </table>

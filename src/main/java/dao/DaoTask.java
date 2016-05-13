@@ -55,7 +55,6 @@ public class DaoTask {
             }
             resultSet.close();
             preparedStatement.close();
-
         } catch (SQLException e) {
             logger.error("Cannot perform SQL statement" + query);
         }
@@ -183,31 +182,28 @@ public class DaoTask {
         }
     }
 
-    public void editTask(int task_id,
-                         int owner_id,
+    public void editTask(int taskId,
+                         int foresterId,
                          String type,
                          String comments,
-                         int forester_id,
                          boolean done,
                          boolean confirmed) {
 
         String query = "UPDATE tasks " +
-                "SET owner_id = ?," +
+                "SET forester_id = ?," +
                 "type = ?," +
                 "comments = ?," +
-                "forester_id = ?," +
                 "done = ?," +
-                "confirmed = ?" +
+                "confirmed = ? " +
                 "WHERE task_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, owner_id);
+            preparedStatement.setInt(1, foresterId);
             preparedStatement.setString(2, type);
             preparedStatement.setString(3, comments);
-            preparedStatement.setInt(4, forester_id);
-            preparedStatement.setBoolean(5, done);
-            preparedStatement.setBoolean(6, confirmed);
-            preparedStatement.setInt(7, task_id);
+            preparedStatement.setBoolean(4, done);
+            preparedStatement.setBoolean(5, confirmed);
+            preparedStatement.setInt(6, taskId);
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {

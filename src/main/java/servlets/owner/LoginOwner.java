@@ -29,7 +29,7 @@ public class LoginOwner extends HttpServlet {
         }
         if (dao.isOwnerCorrect(request.getParameter("email"), request.getParameter("password"))) {
             request.getSession().setAttribute("email", request.getParameter("email"));
-            response.sendRedirect("/owner/tasks");
+            response.sendRedirect("/owner/task/all");
         } else
             context.getRequestDispatcher("/errors/noSuchOwner.jsp").forward(request, response);
     }

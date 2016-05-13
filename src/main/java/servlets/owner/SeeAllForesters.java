@@ -18,7 +18,7 @@ import java.util.List;
  * Created by rybatsky
  */
 
-@WebServlet("/foresters")
+@WebServlet("/owner/foresters")
 public class SeeAllForesters extends HttpServlet {
 
     @Override

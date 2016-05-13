@@ -22,7 +22,7 @@ import static dao.DbConnection.getConnection;
  * Created by rybatsky
  */
 
-@WebServlet("/forester/tasks")
+@WebServlet("/forester/task/all")
 public class SeeTasksForester extends HttpServlet {
 
     @Override

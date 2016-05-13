@@ -34,7 +34,7 @@
         </div>
         <input type="submit" value="${logIn}"/>
     </form>
-    <form action="/owner/sign">
+    <form action="/owner/signUp">
         <input type="submit" value="${signUp}"/>
     </form>
 </div>

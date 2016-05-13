@@ -39,7 +39,7 @@
     </table>
 
 </div>
-<form action="/owner/tasks">
+<form action="/owner/task/all">
         <input type="submit" value="${back}"/>
 </form>
 <div class="logout">

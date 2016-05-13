@@ -10,6 +10,7 @@
     <fmt:message bundle="${loc}" key="local.owner" var="ownerNames"></fmt:message>
     <fmt:message bundle="${loc}" key="local.forester" var="foresterNames"></fmt:message>
     <fmt:message bundle="${loc}" key="local.taskType" var="taskType"></fmt:message>
+    <fmt:message bundle="${loc}" key="local.taskComments" var="taskComments"></fmt:message>
     <fmt:message bundle="${loc}" key="local.addNewTask" var="addNewTask"></fmt:message>
     <fmt:message bundle="${loc}" key="local.submit" var="done"></fmt:message>
     <fmt:message bundle="${loc}" key="local.back" var="back"></fmt:message>
@@ -21,16 +22,16 @@
 <body>
 <h1>${addNewTask}</h1>
 <div>
-    <form method="post" action='/task/add' name="AddTask">
+    <form method="post" action='/owner/task/add' name="AddTask">
         <div class="add">
         <table>
             <tr>
                 <td>${ownerNames}</td>
                 <td>
                     <select disabled required name="NamesOwner">
-                        <option value='${owners.ownerId}'>
-                            ${owners.firstName}
-                            ${owners.lastName}
+                        <option value='${owner.ownerId}'>
+                            ${owner.firstName}
+                            ${owner.lastName}
                         </option>
                     </select>
                 </td>
@@ -40,7 +41,7 @@
                 <td><input type="text" name="type"/></td>
             </tr>
             <tr>
-                <td>${taskText}</td>
+                <td>${taskComments}</td>
                 <td><input type="text" name="comments"/></td>
             </tr>
             <tr>
@@ -60,7 +61,7 @@
         <input type="hidden" name="action" value="insert"/>
         <input type="submit" value='${done}'/>
     </form>
-    <form action="/owner/tasks">
+    <form action="/owner/task/all">
         <input type="submit" value="${back}"/>
     </form>
 </div>

@@ -21,7 +21,7 @@ import java.util.List;
  * Created by rybatsky
  */
 
-@WebServlet("/task/add")
+@WebServlet("/owner/task/add")
 public class AddTask extends HttpServlet {
 
     private DaoTask dao;
@@ -68,7 +68,7 @@ public class AddTask extends HttpServlet {
         dao.setOwnerId(owner.getOwnerId());
         dao.setForesterId(Integer.parseInt(request.getParameter("NamesForester")));
         dao.addTask(task);
-        RequestDispatcher rd = request.getRequestDispatcher("/owner/task/all.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/owner/task/added.jsp");
         rd.forward(request, response);
     }
 }

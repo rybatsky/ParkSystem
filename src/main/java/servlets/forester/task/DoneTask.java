@@ -1,6 +1,8 @@
 package servlets.forester.task;
 
+import dao.DaoForester;
 import dao.DaoTask;
+import model.Forester;
 import model.Task;
 
 import javax.servlet.RequestDispatcher;
@@ -16,16 +18,18 @@ import java.sql.SQLException;
  * Created by rybatsky
  */
 
-@WebServlet("/task/done")
+@WebServlet("/forester/task/done")
 public class DoneTask extends HttpServlet {
 
     private DaoTask dao;
+    private Forester forester;
     private Task task = new Task();
     private int taskId;
 
     public DoneTask() throws SQLException {
         super();
         dao = new DaoTask();
+        forester = new Forester();
     }
 
     @Override
@@ -33,6 +37,8 @@ public class DoneTask extends HttpServlet {
 
         getServletContext();
         request.setCharacterEncoding("utf-8");
+
+        System.out.println("email" + forester.getEmail());
         taskId = Integer.parseInt(request.getParameter("taskId"));
         task = dao.getTaskById(taskId, task);
         request.setAttribute("task", task);
@@ -43,7 +49,6 @@ public class DoneTask extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/forester/task/done.jsp");
             rd.forward(request, response);
         }
-
     }
 
     @Override
@@ -53,7 +58,8 @@ public class DoneTask extends HttpServlet {
         response.setContentType("text/html");
         dao.editIsDoneTask(taskId, Task.getDoneStatic(request.getParameter("done")));
         request.getSession().setAttribute("email", request.getParameter("email"));
-        RequestDispatcher rd = request.getRequestDispatcher("/forester/task/all.jsp");
+        System.out.println("request.getParameter(\"email\")" + request.getParameter("email"));
+        RequestDispatcher rd = request.getRequestDispatcher("/forester/task/doneDone.jsp");
         rd.forward(request, response);
     }
 }

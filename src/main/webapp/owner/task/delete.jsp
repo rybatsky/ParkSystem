@@ -21,11 +21,13 @@
 <body>
 <h1>${delTaskQuestion}</h1>
 <div>
-    <form method="POST" action='/task/delete' name="DelTask">
+    <form method="POST" action='/owner/task/delete' name="DelTask">
         <input type="hidden" name="action" value="delete"/>
         <input type="submit" value=${deleteTask}>
     </form>
-    <a href="/owner/tasks">${no}</a>
+    <form action="/owner/task/all">
+        <input type="submit" value="${no}">
+    </form>
 </div>
 <div class="logout">
     <form action="/logout.jsp">

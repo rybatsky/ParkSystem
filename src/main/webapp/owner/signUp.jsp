@@ -21,34 +21,32 @@
 <body>
 <h1>${signUpOwner}</h1>
 <div>
-    <form method="post" action='/owner/sign' name="addUser">
+    <form method="post" action='/owner/signUp' name="addUser">
         <input type="hidden" name="action" value="insert"/>
         <div class="sign">
         <table>
             <tr>
                 <td>${fn}</td>
-                <td><input type="text" name="first_name" value=""/></td>
+                <td><input name="first_name" type="text"/></td>
             </tr>
             <tr>
                 <td>${ln}</td>
-                <td><input type="text" name="last_name"/></td>
+                <td><input name="last_name" type="text"/></td>
             </tr>
             <tr>
                 <td>${email}</td>
-                <td><input type="text" name="email" value=""/></td>
+                <td><input name="email" type="text"/></td>
             </tr>
             <tr>
             <tr>
                 <td>${password}</td>
-                <td><input type="text" name="password" value=""/></td>
+                <td><input name="password" type="password"/></td>
             </tr>
         </table>
         </div>
         <input type="hidden" name="action" value="update"/>
         <input type="submit" value='${signUp}'/>
     </form>
-    <br>
-
     <form action="/owner/login">
         <input type="submit" value="${logIn}">
     </form>

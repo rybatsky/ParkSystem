@@ -21,7 +21,7 @@ import java.util.List;
  * Created by rybatsky
  */
 
-@WebServlet("/task/edit")
+@WebServlet("/owner/task/edit")
 public class EditTask extends HttpServlet {
 
     private DaoTask dao;
@@ -43,14 +43,15 @@ public class EditTask extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         getServletContext();
+        request.getSession(true);
         request.setCharacterEncoding("utf-8");
-        request.setAttribute("taskWasEdited", "");
         List<model.Forester> foresters = new ArrayList<>();
         daoForester.getForestersNamesAndId(foresters);
         request.setAttribute("foresters", foresters);
         taskId = Integer.parseInt(request.getParameter("taskId"));
-        int forester_id = dao.getIdForesterByTaskId(taskId);
-        request.setAttribute("forester_id", forester_id);
+        request.setAttribute("taskId", taskId);
+        int foresterId = dao.getIdForesterByTaskId(taskId);
+        request.setAttribute("forester_id", foresterId);
         task = dao.getTaskById(taskId, task);
         request.setAttribute("task", task);
         owner = daoOwner.getOwnerByEmail((String) request.getSession(true).getAttribute("email"));
@@ -69,17 +70,15 @@ public class EditTask extends HttpServlet {
 
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html");
-        dao.getForesterIdByNames(request.getParameter("firstNameOfForester"), request.getParameter("lastNameOfForester"));
         dao.setForesterId(Integer.parseInt(request.getParameter("NamesForester")));
         dao.editTask(taskId,
-                owner.getOwnerId(),
-                request.getParameter("type"),
-                request.getParameter("comments"),
                 dao.getForesterId(),
+                request.getParameter("taskType"),
+                request.getParameter("taskText"),
                 Task.getDoneStatic(request.getParameter("done")),
                 Task.getConfirmedStatic(request.getParameter("confirmed"))
         );
-        RequestDispatcher rd = request.getRequestDispatcher("/owner/task/all.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/owner/task/edited.jsp");
         rd.forward(request, response);
     }
 }

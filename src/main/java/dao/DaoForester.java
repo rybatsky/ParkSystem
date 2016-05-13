@@ -21,7 +21,7 @@ public class DaoForester {
         connection = getConnection();
     }
 
-    public void addForester(model.Forester forester) {
+    public void addForester(Forester forester) {
 
         String query = "INSERT INTO foresters (first_name, last_name, email, password) " +
                 "VALUES (?, ?, ?, ?)";
@@ -59,14 +59,14 @@ public class DaoForester {
         return result != 0;
     }
 
-    public List<model.Forester> getAllForesters(List<model.Forester> foresters) {
+    public List<Forester> getAllForesters(List<Forester> foresters) {
 
         String query = "SELECT * FROM foresters";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                foresters.add(new model.Forester(resultSet.getInt(1),
+                foresters.add(new Forester(resultSet.getInt(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
@@ -80,14 +80,14 @@ public class DaoForester {
         return foresters;
     }
 
-    public void getForestersNamesAndId(List<model.Forester> foresters) {
+    public void getForestersNamesAndId(List<Forester> foresters) {
 
         String query = "SELECT forester_id, first_name, last_name FROM foresters";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                foresters.add(new model.Forester(resultSet.getInt(1),
+                foresters.add(new Forester(resultSet.getInt(1),
                         resultSet.getString("first_name"),
                         resultSet.getString("last_name")));
             }
@@ -98,9 +98,9 @@ public class DaoForester {
         }
     }
 
-    public model.Forester getForesterByEmail(String email) {
+    public Forester getForesterByEmail(String email) {
 
-        model.Forester forester = new model.Forester();
+        Forester forester = new Forester();
         String query = "SELECT forester_id, first_name, last_name from foresters WHERE email = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);

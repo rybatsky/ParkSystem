@@ -16,7 +16,7 @@ import java.sql.SQLException;
  * Created by rybatsky
  */
 
-@WebServlet("/owner/sign")
+@WebServlet("/owner/signUp")
 public class SignOwner extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -45,7 +45,6 @@ public class SignOwner extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String redirect = "/owner/login.jsp";
         response.setContentType("text/html");
         request.setCharacterEncoding("utf-8");
         Owner owner = new Owner();
@@ -54,7 +53,7 @@ public class SignOwner extends HttpServlet {
         owner.setFirstName(request.getParameter("first_name"));
         owner.setLastName(request.getParameter("last_name"));
         dao.addOwner(owner);
-        request.getRequestDispatcher(redirect).forward(request, response);
+        request.getRequestDispatcher("/owner/login.jsp").forward(request, response);
     }
 
 

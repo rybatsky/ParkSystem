@@ -26,7 +26,7 @@
 <body>
 <h1>${editTask}</h1>
 <div>
-    <form method="POST" action='/task/done' name="EditTask">
+    <form method="POST" action='/forester/task/done' name="EditTask">
         <div class="done">
         <table>
             <tr>
@@ -58,7 +58,7 @@
         <input type="hidden" name="action" value="update"/>
         <input type="submit" value="${update}"/>
     </form>
-    <form action="/forester/tasks">
+    <form action="/forester/task/all">
         <input type="submit" value="${back}">
     </form>
 </div>

@@ -52,16 +52,16 @@
         <td>${tasks.comments}</td>
         <td>${tasks.done}</td>
         <td>${tasks.confirmed}</td>
-        <td><a href="/task/edit?taskId=${tasks.taskId}">${editTask}</a></td>
-        <td><a href="/task/delete?taskId=${tasks.taskId}">${deleteTask}</a></td>
+        <td><a href="/owner/task/edit?taskId=${tasks.taskId}">${editTask}</a></td>
+        <td><a href="/owner/task/delete?taskId=${tasks.taskId}">${deleteTask}</a></td>
     </tr>
     </c:forEach>
 </table>
 </div>
-<form action="/task/add">
+<form action="/owner/task/add">
     <input type="submit" value=${addTask}/>
 </form>
-<a href="/foresters">${foresters}</a>
+<a href="/owner/foresters">${foresters}</a>
 <div class="logout">
     <form action="/logout.jsp">
         <input type="submit" value="${logOut}"/>

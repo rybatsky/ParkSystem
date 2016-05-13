@@ -21,25 +21,25 @@
 <body>
 <h1>${signUp}</h1>
 <div>
-    <form method="post" action='/forester/sign' name="addUser">
+    <form method="post" action='/forester/signUp' name="addUser">
         <input type="hidden" name="action" value="insert"/>
         <table>
             <tr>
                 <td>${fn}</td>
-                <td><input type="text" name="first_name"/></td>
+                <td><input name="first_name" type="text"/></td>
             </tr>
             <tr>
                 <td>${ln}</td>
-                <td><input type="text" name="last_name"/></td>
+                <td><input name="last_name" type="text"/></td>
             </tr>
             <tr>
                 <td>${email}</td>
-                <td><input type="text" name="email"/></td>
+                <td><input name="email" type="text"/></td>
             </tr>
             <tr>
             <tr>
                 <td>${password}</td>
-                <td><input type="text" name="password"/></td>
+                <td><input name="password" type="password"/></td>
             </tr>
         </table>
         <input type="hidden" name="action" value="update"/>

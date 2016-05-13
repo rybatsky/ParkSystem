@@ -20,7 +20,7 @@
 <div>
     ${wrongData}
 </div>
-<a href="/owner/signUp.jsp">${signUp}</a><br>
+<a href="/owner/signUp.jsp">${signUp}</a>
 <form action="/owner/login">
     <input type="submit" value="${back}">
 </form>

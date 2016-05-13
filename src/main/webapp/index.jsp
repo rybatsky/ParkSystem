@@ -27,8 +27,8 @@
     <table>
         <tr>
             <div>
-                <td class = "forester"><a href="forester/login.jsp">${logInForester}</a></td>
-                <td class = "owner"><a href="owner/login.jsp">${logInOwner}</a></td>
+                <td class = "forester"><a href="/forester/login.jsp">${logInForester}</a></td>
+                <td class = "owner"><a href="/owner/login.jsp">${logInOwner}</a></td>
             </div>
         </tr>
         <tr>

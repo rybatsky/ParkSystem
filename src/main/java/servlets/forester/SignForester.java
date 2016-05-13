@@ -15,10 +15,9 @@ import java.sql.SQLException;
  * Created by rybatsky
  */
 
-@WebServlet("/forester/sign")
+@WebServlet("/forester/signUp")
 public class SignForester extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
     private DaoForester dao;
 
     public SignForester() throws SQLException {

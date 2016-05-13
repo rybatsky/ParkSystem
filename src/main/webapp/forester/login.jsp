@@ -34,7 +34,7 @@
         </div>
         <input type="submit" value="${logIn}"/>
     </form>
-    <form action="/forester/sign">
+    <form action="/forester/signUp">
         <input type="submit" value="${signUp}"/>
     </form>
 </div>

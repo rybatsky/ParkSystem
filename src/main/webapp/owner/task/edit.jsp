@@ -8,6 +8,7 @@
     <fmt:setLocale value="${sessionScope.local}"/>
     <fmt:setBundle basename="local" var="loc"/>
     <fmt:message bundle="${loc}" key="local.editTask" var="editTask"></fmt:message>
+    <fmt:message bundle="${loc}" key="local.taskId" var="taskId"></fmt:message>
     <fmt:message bundle="${loc}" key="local.ownerId" var="ownerId"></fmt:message>
     <fmt:message bundle="${loc}" key="local.forester" var="forester"></fmt:message>
     <fmt:message bundle="${loc}" key="local.taskType" var="type"></fmt:message>
@@ -26,10 +27,11 @@
 <body>
 <h1>${editTask}</h1>
 <div>
-    <form method="POST" action='/task/edit' name="EditTask">
+    <form method="POST" action='/owner/task/edit' name="EditTask">
         <div class="edit">
         <table>
             <tr>
+                <th>${taskId}</th>
                 <th>${ownerId}</th>
                 <th>${forester}</th>
                 <th>${type}</th>
@@ -38,11 +40,12 @@
                 <th>${confirmed}</th>
             </tr>
             <tr>
+                <td><input disabled type="text" name="taskId" value='${task.taskId}'/></td>
                 <td>
                     <select disabled required name="NamesOwner">
-                        <option value='${owners.ownerId}'>
-                            ${owners.firstName}
-                            ${owners.lastName}
+                        <option value='${owner.ownerId}'>
+                            ${owner.firstName}
+                            ${owner.lastName}
                         </option>
                     </select>
                 </td>
@@ -57,21 +60,21 @@
                     </select>
                 </td>
                 <td>
-                    <input type="text" name="taskType" value='${tasks.type}'/>
+                    <input type="text" name="taskType" value='${task.type}'/>
                 </td>
                 <td>
-                    <input type="text" name="taskText" value='${tasks.comments}'/>
+                    <input type="text" name="taskText" value='${task.comments}'/>
                 </td>
                 <td>
                     <select required name="done">
-                        <option selected>${tasks.done}</option>
+                        <option selected>${task.done}</option>
                         <option>Done</option>
                         <option>Not done</option>
                     </select>
                 </td>
                 <td>
                     <select required name="confirmed">
-                        <option selected>${tasks.confirmed}</option>
+                        <option selected>${task.confirmed}</option>
                         <option>Confirmed</option>
                         <option>Not confirmed</option>
                     </select>
@@ -83,7 +86,7 @@
         <input type="submit" value="${update}"/>
     </form>
 </div>
-<form action="/owner/tasks">
+<form action="/owner/task/all">
     <input type="submit" value="${back}"/>
 </form>
 <div class="logout">

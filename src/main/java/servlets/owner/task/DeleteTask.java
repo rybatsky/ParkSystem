@@ -17,7 +17,7 @@ import java.sql.SQLException;
  * Created by rybatsky
  */
 
-@WebServlet("/task/delete")
+@WebServlet("/owner/task/delete")
 public class DeleteTask extends HttpServlet {
     private DaoTask dao;
     private int taskId;
@@ -47,9 +47,8 @@ public class DeleteTask extends HttpServlet {
 
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html");
-        String redirect = "/owner/task/delete.jsp";
         dao.delTask(taskId);
-        RequestDispatcher rd = request.getRequestDispatcher(redirect);
+        RequestDispatcher rd = request.getRequestDispatcher("/owner/task/deleted.jsp");
         rd.forward(request, response);
     }
 }

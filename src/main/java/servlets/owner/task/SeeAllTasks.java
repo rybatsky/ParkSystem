@@ -20,7 +20,7 @@ import static dao.DbConnection.getConnection;
  * Created by rybatsky
  */
 
-@WebServlet("/owner/tasks")
+@WebServlet("/owner/task/all")
 public class SeeAllTasks extends HttpServlet {
 
     @Override

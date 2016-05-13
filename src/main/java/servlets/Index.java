@@ -18,6 +18,6 @@ public class Index extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         getServletContext();
         request.getSession(true).setAttribute("local", request.getParameter("local"));
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }

@@ -38,7 +38,7 @@ public class LoginForester extends HttpServlet {
         }
         if (dao.isForesterCorrect(request.getParameter("email"), request.getParameter("password"))) {
             request.getSession().setAttribute("email", request.getParameter("email"));
-            response.sendRedirect("/forester/tasks");
+            response.sendRedirect("/forester/task/all");
         } else
             context.getRequestDispatcher("/errors/noSuchForester.jsp").forward(request, response);
     }
