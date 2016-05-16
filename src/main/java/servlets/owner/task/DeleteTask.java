@@ -29,6 +29,7 @@ public class DeleteTask extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         getServletContext();
         request.getSession(true);
         request.setCharacterEncoding("utf-8");

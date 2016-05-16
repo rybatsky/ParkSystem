@@ -21,7 +21,7 @@
 <body>
 <h1>${delTaskQuestion}</h1>
 <div>
-    <form method="POST" action='/owner/task/delete' name="DelTask">
+    <form method="post" action="/owner/task/delete">
         <input type="hidden" name="action" value="delete"/>
         <input type="submit" value=${deleteTask}>
     </form>

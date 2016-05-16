@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -20,7 +21,16 @@ public class LoginOwner extends HttpServlet {
     private DaoOwner dao;
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.getSession(true);
+        getServletContext();
+        request.getRequestDispatcher("/owner/login.jsp").forward(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         ServletContext context = getServletContext();
         try {
             dao = new DaoOwner();
@@ -33,12 +43,5 @@ public class LoginOwner extends HttpServlet {
         } else
             context.getRequestDispatcher("/errors/noSuchOwner.jsp").forward(request, response);
     }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        getServletContext();
-        request.getSession(true).setAttribute("local", request.getParameter("local"));
-        request.getRequestDispatcher("/owner/login.jsp").forward(request, response);
-    }
 }
+

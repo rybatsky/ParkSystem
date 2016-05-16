@@ -26,47 +26,67 @@
 <body>
 <h1>${editTask}</h1>
 <div>
-    <form method="POST" action='/forester/task/done' name="EditTask">
-        <div class="done">
-        <table>
-            <tr>
-                <th>${owner}</th>
-                <th>${forester}</th>
-                <th>${type}</th>
-                <th>${comments}</th>
-                <th>${done}</th>
-                <th>${confirmed}</th>
-            </tr>
-            <tr>
-                <td><input type="text" name="NamesOwner"
-                           value='${owners.firstName} ${owners.lastName}' disabled/></td>
-                <td><input type="text" name="NamesForester"
-                           value='${foresters.firstName} ${foresters.lastName}' disabled/></td>
-                <td><input type="text" name="taskType" value='${tasks.type}' disabled/></td>
-                <td><input type="text" name="taskText" value='${tasks.comments}' disabled/></td>
-                <td>
-                    <select required name="done">
-                        <option selected>${tasks.done}</option>
-                        <option>Done</option>
-                        <option>Not done</option>
-                    </select>
-                </td>
-                <td><input type="text" name="confirmed" value='${tasks.confirmed}' disabled/></td>
-            </tr>
-        </table>
-        </div>
-        <input type="hidden" name="action" value="update"/>
+    <form method="post" action="/forester/task/done">
+        <input type="hidden" name="action" value="edit"/>
+        <select required name="done">
+            <option selected>${tasks.done}</option>
+            <option>Done</option>
+            <option>Not done</option>
+        </select>
         <input type="submit" value="${update}"/>
-    </form>
-    <form action="/forester/task/all">
-        <input type="submit" value="${back}">
-    </form>
+</form>
+<form action="/forester/task/all">
+<input type="submit" value="${back}">
+</form>
 </div>
 <div class="logout">
-    <form action="/logout.jsp">
-        <input type="submit" value="${logOut}"/>
-    </form>
+<form action="/logout.jsp">
+<input type="submit" value="${logOut}"/>
+</form>
 </div>
+
+<%--<div>--%>
+    <%--<form method="post" action="/forester/task/done">--%>
+        <%--<div class="done">--%>
+        <%--<table>--%>
+            <%--<tr>--%>
+                <%--<th>${owner}</th>--%>
+                <%--<th>${forester}</th>--%>
+                <%--<th>${type}</th>--%>
+                <%--<th>${comments}</th>--%>
+                <%--<th>${done}</th>--%>
+                <%--<th>${confirmed}</th>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td><input type="text" name="NamesOwner"--%>
+                           <%--value='${owners.firstName} ${owners.lastName}' disabled/></td>--%>
+                <%--<td><input type="text" name="NamesForester"--%>
+                           <%--value='${foresters.firstName} ${foresters.lastName}' disabled/></td>--%>
+                <%--<td><input type="text" name="taskType" value='${tasks.type}' disabled/></td>--%>
+                <%--<td><input type="text" name="taskText" value='${tasks.comments}' disabled/></td>--%>
+                <%--<td>--%>
+                    <%--<select required name="done">--%>
+                        <%--<option selected>${tasks.done}</option>--%>
+                        <%--<option>Done</option>--%>
+                        <%--<option>Not done</option>--%>
+                    <%--</select>--%>
+                <%--</td>--%>
+                <%--<td><input type="text" name="confirmed" value='${tasks.confirmed}' disabled/></td>--%>
+            <%--</tr>--%>
+        <%--</table>--%>
+        <%--</div>--%>
+        <%--<input type="hidden" name="action" value="update"/>--%>
+        <%--<input type="submit" value="${update}"/>--%>
+    <%--</form>--%>
+    <%--<form action="/forester/task/all">--%>
+        <%--<input type="submit" value="${back}">--%>
+    <%--</form>--%>
+<%--</div>--%>
+<%--<div class="logout">--%>
+    <%--<form action="/logout.jsp">--%>
+        <%--<input type="submit" value="${logOut}"/>--%>
+    <%--</form>--%>
+<%--</div>--%>
 </body>
 </html>
 

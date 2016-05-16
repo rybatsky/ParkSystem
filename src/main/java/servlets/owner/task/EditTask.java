@@ -3,6 +3,7 @@ package servlets.owner.task;
 import dao.DaoForester;
 import dao.DaoOwner;
 import dao.DaoTask;
+import model.Forester;
 import model.Owner;
 import model.Task;
 
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,9 +45,8 @@ public class EditTask extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         getServletContext();
-        request.getSession(true);
         request.setCharacterEncoding("utf-8");
-        List<model.Forester> foresters = new ArrayList<>();
+        List<Forester> foresters = new ArrayList<>();
         daoForester.getForestersNamesAndId(foresters);
         request.setAttribute("foresters", foresters);
         taskId = Integer.parseInt(request.getParameter("taskId"));

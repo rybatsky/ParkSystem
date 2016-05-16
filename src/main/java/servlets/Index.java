@@ -16,6 +16,7 @@ public class Index extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         getServletContext();
         request.getSession(true).setAttribute("local", request.getParameter("local"));
         request.getRequestDispatcher("/index.jsp").forward(request, response);

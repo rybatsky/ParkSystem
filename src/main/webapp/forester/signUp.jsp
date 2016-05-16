@@ -23,6 +23,7 @@
 <div>
     <form method="post" action='/forester/signUp' name="addUser">
         <input type="hidden" name="action" value="insert"/>
+        <div class="login">
         <table>
             <tr>
                 <td>${fn}</td>
@@ -42,6 +43,7 @@
                 <td><input name="password" type="password"/></td>
             </tr>
         </table>
+            </div>
         <input type="hidden" name="action" value="update"/>
         <input type="submit" value='${signUp}'/>
     </form>

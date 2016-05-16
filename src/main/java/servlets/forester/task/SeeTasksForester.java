@@ -2,6 +2,7 @@ package servlets.forester.task;
 
 import dao.DaoForester;
 import dao.DaoTask;
+import model.Forester;
 import model.Task;
 
 import javax.servlet.ServletContext;
@@ -30,17 +31,17 @@ public class SeeTasksForester extends HttpServlet {
 
         ServletContext context = getServletContext();
         getConnection();
+        HttpSession session = request.getSession(true);
         List<Task> tasks = new ArrayList<>();
         DaoTask dao = null;
         DaoForester daoForester = null;
-        model.Forester forester = new model.Forester();
+        Forester forester = new Forester();
         try {
             dao = new DaoTask();
             daoForester = new DaoForester();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        HttpSession session = request.getSession(true);
         String email = (String) session.getAttribute("email");
         if (daoForester != null) {
             forester = daoForester.getForesterByEmail(email);
@@ -49,11 +50,11 @@ public class SeeTasksForester extends HttpServlet {
         if (dao != null) {
             tasks = dao.getTasksForForester(tasks, id);
         }
-        if (tasks.isEmpty()) {
-            request.setAttribute("allTasks", "There are no tasks for you");
-        } else {
-            request.setAttribute("allTasks", "Your tasks");
-        }
+//        if (tasks.isEmpty()) {
+//            request.setAttribute("allTasks", "There are no tasks for you");
+//        } else {
+//            request.setAttribute("allTasks", "Your tasks");
+//        }
         request.setAttribute("tasks", tasks);
         try {
             context.getRequestDispatcher("/forester/task/all.jsp").forward(request, response);

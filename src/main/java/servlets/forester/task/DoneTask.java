@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -22,23 +23,20 @@ import java.sql.SQLException;
 public class DoneTask extends HttpServlet {
 
     private DaoTask dao;
-    private Forester forester;
     private Task task = new Task();
     private int taskId;
 
     public DoneTask() throws SQLException {
         super();
         dao = new DaoTask();
-        forester = new Forester();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        request.getSession(true);
         getServletContext();
         request.setCharacterEncoding("utf-8");
-
-        System.out.println("email" + forester.getEmail());
         taskId = Integer.parseInt(request.getParameter("taskId"));
         task = dao.getTaskById(taskId, task);
         request.setAttribute("task", task);
@@ -57,8 +55,6 @@ public class DoneTask extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html");
         dao.editIsDoneTask(taskId, Task.getDoneStatic(request.getParameter("done")));
-        request.getSession().setAttribute("email", request.getParameter("email"));
-        System.out.println("request.getParameter(\"email\")" + request.getParameter("email"));
         RequestDispatcher rd = request.getRequestDispatcher("/forester/task/doneDone.jsp");
         rd.forward(request, response);
     }

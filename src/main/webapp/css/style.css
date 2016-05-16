@@ -37,6 +37,11 @@ table {
     width: 100%;
 }
 
+.login table,
+.sign table {
+    text-align: left;
+}
+
 .tasks table,
 .foresters table,
 .add table,
