@@ -9,6 +9,7 @@ public class Task {
     private int taskId;
     private int ownerId;
     private int foresterId;
+    private String plant;
     private String type;
     private String comments;
     private Boolean done;
@@ -17,6 +18,7 @@ public class Task {
     public Task(int taskId,
                 int ownerId,
                 int foresterId,
+                String plant,
                 String type,
                 String comments,
                 boolean done,
@@ -25,6 +27,7 @@ public class Task {
         this.taskId = taskId;
         this.ownerId = ownerId;
         this.foresterId = foresterId;
+        this.plant = plant;
         this.type = type;
         this.comments = comments;
         this.done = done;
@@ -56,6 +59,14 @@ public class Task {
 
     public void setForesterId(int foresterId) {
         this.foresterId = foresterId;
+    }
+
+    public String getPlant() {
+        return plant;
+    }
+
+    public void setPlant(String plant) {
+        this.plant = plant;
     }
 
     public String getType() {

@@ -7,9 +7,9 @@
 <head>
     <fmt:setLocale value="${sessionScope.local}"/>
     <fmt:setBundle basename="local" var="loc"/>
-    <fmt:message bundle="${loc}" key="local.loggedOut" var="logOut"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.back" var="back"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.index" var="index"></fmt:message>
+    <fmt:message bundle="${loc}" key="local.loggedOut" var="logOut"/>
+    <fmt:message bundle="${loc}" key="local.back" var="back"/>
+    <fmt:message bundle="${loc}" key="local.index" var="index"/>
 
     <title>${logOut}</title>
     <link href="/css/style.css" rel="stylesheet">

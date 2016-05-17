@@ -24,14 +24,14 @@ public class DbConnection {
             Context envCtx = (Context) new InitialContext().lookup("java:/comp/env");
             ds = (DataSource) envCtx.lookup("jdbc/park");
         } catch (NamingException n) {
-            logger.error("This name is not allowed here" + n.getRemainingName() + ". " + n);
+            logger.error("This name is not allowed here " + n.getRemainingName() + ". " + n);
             return null;
         }
 
         try {
             return ds.getConnection();
         } catch (SQLException e) {
-            logger.error("Cannot create database connection:" + e);
+            logger.error("Cannot create database connection: " + e);
             return null;
         }
     }

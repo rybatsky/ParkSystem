@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import static dao.DbConnection.getConnection;
 
@@ -23,20 +24,20 @@ public class DaoOwner {
         connection = getConnection();
     }
 
-
     public void addOwner(Owner owner) {
 
-        String query = "INSERT INTO owners (first_name, last_name, email, password) " +
-                "VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO owners (first_name, last_name, park_name, email, password) " +
+                "VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, owner.getFirstName());
             preparedStatement.setString(2, owner.getLastName());
-            preparedStatement.setString(3, owner.getEmail());
-            preparedStatement.setString(4, owner.getPassword());
+            preparedStatement.setString(3, owner.getParkName());
+            preparedStatement.setString(4, owner.getEmail());
+            preparedStatement.setString(5, owner.getPassword());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
     }
 
@@ -45,7 +46,7 @@ public class DaoOwner {
         if (email == null || password == null)
             return false;
         String query = "SELECT owner_id FROM owners WHERE email = ? AND password = ?";
-        int result;
+        int result = 0;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, email);
@@ -56,10 +57,31 @@ public class DaoOwner {
             else
                 return false;
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
-            throw new RuntimeException(e);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
         return result != 0;
+    }
+
+    public List<Owner> getAllOwners(List<Owner> owners) {
+
+        String query = "SELECT * FROM owners";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                owners.add(new Owner(resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6)));
+            }
+            resultSet.close();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            logger.error(e + "\n Cannot perform SQL statement " + query);
+        }
+        return owners;
     }
 
     public Owner getOwnerByEmail(String email) {
@@ -78,8 +100,36 @@ public class DaoOwner {
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
         return owner;
     }
+
+//    public Owner getOwnerById(int id) {
+//
+//        Owner owner = new Owner();
+//        String query = "SELECT * from owners WHERE owner_id = ?";
+//        try {
+//            PreparedStatement preparedStatement = connection.prepareStatement(query);
+//            preparedStatement.setInt(1, id);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()) {
+//                owner.setOwnerId(id);
+//                owner.setLastName(resultSet.getString("first_name"));
+//                owner.setFirstName(resultSet.getString("last_name"));
+//                owner.setEmail(resultSet.getString("park_name"));
+//                owner.setParkName(resultSet.getString("email"));
+//                owner.setPassword(resultSet.getString("password"));
+//            }
+//            if (id == 0) {
+//                System.out.println("id = 0");
+//                throw new SQLException();
+//            }
+//            resultSet.close();
+//            preparedStatement.close();
+//        } catch (SQLException e) {
+//            logger.error(e + "\n Cannot perform SQL statement " + query);
+//        }
+//        return owner;
+//    }
 }

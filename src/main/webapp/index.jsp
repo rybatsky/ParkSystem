@@ -7,13 +7,14 @@
 <head>
     <fmt:setLocale value="${sessionScope.local}"/>
     <fmt:setBundle basename="local" var="loc"/>
-    <fmt:message bundle="${loc}" key="local.welcome" var="welcome"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.logInForester" var="logInForester"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.logInOwner" var="logInOwner"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.signUpForester" var="signUpForester"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.signUpOwner" var="signUp"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.logOut" var="logOut"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.updateLanguage" var="update"></fmt:message>
+    <fmt:message bundle="${loc}" key="local.welcome" var="welcome"/>
+    <fmt:message bundle="${loc}" key="local.logInForester" var="logInForester"/>
+    <fmt:message bundle="${loc}" key="local.logInOwner" var="logInOwner"/>
+    <fmt:message bundle="${loc}" key="local.signUpForester" var="signUpForester"/>
+    <fmt:message bundle="${loc}" key="local.signUpOwner" var="signUp"/>
+    <fmt:message bundle="${loc}" key="local.logOut" var="logOut"/>
+    <fmt:message bundle="${loc}" key="local.updateLanguage" var="update"/>
+    <fmt:message bundle="${loc}" key="local.language" var="language"/>
 
     <title>${welcome}</title>
     <link href="/css/style.css" rel="stylesheet">
@@ -41,11 +42,7 @@
     </div>
 <div class = "language">
     <form name="Language choose" action="/index" method="get">
-        <select size="2" required name="local">
-            <option value="ru">Русский (RU)</option>
-            <option value="en">English (EN)</option>
-        </select>
-        <input type="submit" value="${update}"/>
+            <label><input type="submit" value="${language}" name="local"/></label>
     </form>
 </div>
 </div>

@@ -6,8 +6,8 @@
 <head>
     <fmt:setLocale value="${sessionScope.local}"/>
     <fmt:setBundle basename="local" var="loc"/>
-    <fmt:message bundle="${loc}" key="local.error" var="error"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.back" var="back"></fmt:message>
+    <fmt:message bundle="${loc}" key="local.error" var="error"/>
+    <fmt:message bundle="${loc}" key="local.back" var="back"/>
 
     <title>${error}</title>
     <link href="/css/style.css" rel="stylesheet">

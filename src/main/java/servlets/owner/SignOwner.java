@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -50,10 +49,11 @@ public class SignOwner extends HttpServlet {
         response.setContentType("text/html");
         request.setCharacterEncoding("utf-8");
         Owner owner = new Owner();
-        owner.setPassword(request.getParameter("password"));
-        owner.setEmail(request.getParameter("email"));
         owner.setFirstName(request.getParameter("first_name"));
         owner.setLastName(request.getParameter("last_name"));
+        owner.setParkName(request.getParameter("park_name"));
+        owner.setEmail(request.getParameter("email"));
+        owner.setPassword(request.getParameter("password"));
         dao.addOwner(owner);
         request.getRequestDispatcher("/owner/login.jsp").forward(request, response);
     }

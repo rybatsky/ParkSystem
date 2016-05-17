@@ -12,6 +12,14 @@ public class Forester {
     private String email;
     private String password;
 
+    public Forester(int foresterId, String firstName, String lastName, String email, String password) {
+        this.foresterId = foresterId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
     public Forester(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,14 +34,6 @@ public class Forester {
     }
 
     public Forester() {
-    }
-
-    public Forester(int foresterId, String firstName, String lastName, String email, String password) {
-        this.foresterId = foresterId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
     }
 
     public int getForesterId() {
@@ -74,10 +74,5 @@ public class Forester {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return foresterId + ") " +firstName + ' ' + lastName + ' ' + email + ' ' + password;
     }
 }

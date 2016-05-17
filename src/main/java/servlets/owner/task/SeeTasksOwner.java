@@ -1,8 +1,8 @@
-package servlets.forester.task;
+package servlets.owner.task;
 
-import dao.DaoForester;
+import dao.DaoOwner;
 import dao.DaoTask;
-import model.Forester;
+import model.Owner;
 import model.Task;
 
 import javax.servlet.ServletContext;
@@ -23,8 +23,8 @@ import static dao.DbConnection.getConnection;
  * Created by rybatsky
  */
 
-@WebServlet("/forester/task/all")
-public class SeeTasksForester extends HttpServlet {
+@WebServlet("/owner/task/all")
+public class SeeTasksOwner extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
@@ -34,32 +34,30 @@ public class SeeTasksForester extends HttpServlet {
         HttpSession session = request.getSession(true);
         List<Task> tasks = new ArrayList<>();
         DaoTask dao = null;
-        DaoForester daoForester = null;
-        Forester forester = new Forester();
+        DaoOwner daoOwner = null;
+        Owner owner = new Owner();
         try {
             dao = new DaoTask();
-            daoForester = new DaoForester();
+            daoOwner = new DaoOwner();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         String email = (String) session.getAttribute("email");
-        if (daoForester != null) {
-            forester = daoForester.getForesterByEmail(email);
+        if (daoOwner != null) {
+            owner = daoOwner.getOwnerByEmail(email);
         }
-        int id = forester.getForesterId();
+        int id = owner.getOwnerId();
         if (dao != null) {
-            tasks = dao.getTasksForForester(tasks, id);
+            tasks = dao.getTasksForOwner(tasks, id);
         }
 //        if (tasks.isEmpty()) {
 //            request.setAttribute("allTasks", "There are no tasks for you");
 //        } else {
 //            request.setAttribute("allTasks", "Your tasks");
 //        }
-
-        request.setAttribute("forester", forester);
         request.setAttribute("tasks", tasks);
         try {
-            context.getRequestDispatcher("/forester/task/all.jsp").forward(request, response);
+            context.getRequestDispatcher("/owner/task/all.jsp").forward(request, response);
         } catch (IOException e) {
             e.printStackTrace();
         }

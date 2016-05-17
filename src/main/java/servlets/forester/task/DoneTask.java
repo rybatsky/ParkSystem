@@ -1,8 +1,6 @@
 package servlets.forester.task;
 
-import dao.DaoForester;
 import dao.DaoTask;
-import model.Forester;
 import model.Task;
 
 import javax.servlet.RequestDispatcher;
@@ -11,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 

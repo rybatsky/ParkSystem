@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -64,6 +63,7 @@ public class AddTask extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html");
         Task task = new Task();
+        task.setPlant(request.getParameter("plant"));
         task.setType(request.getParameter("type"));
         task.setComments(request.getParameter("comments"));
         dao.setOwnerId(owner.getOwnerId());

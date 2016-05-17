@@ -33,7 +33,7 @@ public class DaoForester {
             preparedStatement.setString(4, forester.getPassword());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
     }
 
@@ -41,6 +41,7 @@ public class DaoForester {
 
         if (email == null || password == null)
             return false;
+
         String query = "SELECT forester_id FROM foresters WHERE email = ? AND password = ?";
         int result;
         try {
@@ -53,8 +54,8 @@ public class DaoForester {
             else
                 return false;
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
-            throw new RuntimeException(e);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
+            return false;
         }
         return result != 0;
     }
@@ -75,7 +76,7 @@ public class DaoForester {
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
         return foresters;
     }
@@ -94,7 +95,7 @@ public class DaoForester {
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
     }
 
@@ -114,7 +115,7 @@ public class DaoForester {
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
         return forester;
     }

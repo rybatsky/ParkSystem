@@ -9,8 +9,26 @@ public class Owner {
     private int ownerId;
     private String firstName;
     private String lastName;
+    private String parkName;
     private String email;
     private String password;
+
+    public Owner(int ownerId, String firstName, String lastName, String parkName, String email, String password) {
+        this.ownerId = ownerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.parkName = parkName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Owner(String firstName, String lastName, String parkName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.parkName = parkName;
+        this.email = email;
+        this.password = password;
+    }
 
     public Owner(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
@@ -50,6 +68,14 @@ public class Owner {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getParkName() {
+        return parkName;
+    }
+
+    public void setParkName(String parkName) {
+        this.parkName = parkName;
     }
 
     public String getEmail() {

@@ -7,13 +7,13 @@
 <head>
     <fmt:setLocale value="${sessionScope.local}"/>
     <fmt:setBundle basename="local" var="loc"/>
-    <fmt:message bundle="${loc}" key="local.firstName" var="fn"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.lastName" var="ln"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.delTask" var="delTask"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.delTaskQuestion" var="delTaskQuestion"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.deleteTask" var="deleteTask"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.no" var="no"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.logOut" var="logOut"></fmt:message>
+    <fmt:message bundle="${loc}" key="local.firstName" var="fn"/>
+    <fmt:message bundle="${loc}" key="local.lastName" var="ln"/>
+    <fmt:message bundle="${loc}" key="local.delTask" var="delTask"/>
+    <fmt:message bundle="${loc}" key="local.delTaskQuestion" var="delTaskQuestion"/>
+    <fmt:message bundle="${loc}" key="local.deleteTask" var="deleteTask"/>
+    <fmt:message bundle="${loc}" key="local.no" var="no"/>
+    <fmt:message bundle="${loc}" key="local.logOut" var="logOut"/>
 
     <title>${delTask}</title>
     <link href="/css/style.css" rel="stylesheet">

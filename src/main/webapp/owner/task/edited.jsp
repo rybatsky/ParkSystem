@@ -6,8 +6,8 @@
 <head>
     <fmt:setLocale value="${sessionScope.local}"/>
     <fmt:setBundle basename="local" var="loc"/>
-    <fmt:message bundle="${loc}" key="local.taskEdited" var="edited"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.seeAllTasks" var="allTasks"></fmt:message>
+    <fmt:message bundle="${loc}" key="local.taskEdited" var="edited"/>
+    <fmt:message bundle="${loc}" key="local.seeAllTasks" var="allTasks"/>
 
     <title>${edited}</title>
     <link href="/css/style.css" rel="stylesheet">

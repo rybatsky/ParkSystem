@@ -7,10 +7,10 @@
 <head>
     <fmt:setLocale value="${sessionScope.local}"/>
     <fmt:setBundle basename="local" var="loc"/>
-    <fmt:message bundle="${loc}" key="local.noSuchForester" var="noSuch"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.wrongData" var="wrongData"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.signUpForester" var="signUp"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.back" var="back"></fmt:message>
+    <fmt:message bundle="${loc}" key="local.noSuchForester" var="noSuch"/>
+    <fmt:message bundle="${loc}" key="local.wrongData" var="wrongData"/>
+    <fmt:message bundle="${loc}" key="local.signUpForester" var="signUp"/>
+    <fmt:message bundle="${loc}" key="local.back" var="back"/>
 
     <title>${noSuch}</title
     <link href="/css/style.css" rel="stylesheet">

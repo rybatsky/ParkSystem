@@ -7,13 +7,14 @@
 <head>
     <fmt:setLocale value="${sessionScope.local}"/>
     <fmt:setBundle basename="local" var="loc"/>
-    <fmt:message bundle="${loc}" key="local.signUpOwner" var="signUpOwner"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.firstName" var="fn"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.lastName" var="ln"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.email" var="email"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.password" var="password"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.signUp" var="signUp"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.logIn" var="logIn"></fmt:message>
+    <fmt:message bundle="${loc}" key="local.signUpOwner" var="signUpOwner"/>
+    <fmt:message bundle="${loc}" key="local.firstName" var="fn"/>
+    <fmt:message bundle="${loc}" key="local.lastName" var="ln"/>
+    <fmt:message bundle="${loc}" key="local.parkName" var="parkName"/>
+    <fmt:message bundle="${loc}" key="local.email" var="email"/>
+    <fmt:message bundle="${loc}" key="local.password" var="password"/>
+    <fmt:message bundle="${loc}" key="local.signUp" var="signUp"/>
+    <fmt:message bundle="${loc}" key="local.logIn" var="logIn"/>
 
     <title>${signUpOwner}</title>
     <link href="/css/style.css" rel="stylesheet">
@@ -27,20 +28,24 @@
         <table>
             <tr>
                 <td>${fn}</td>
-                <td><input name="first_name" type="text"/></td>
+                <td><input type="text" name="first_name"/></td>
             </tr>
             <tr>
                 <td>${ln}</td>
-                <td><input name="last_name" type="text"/></td>
+                <td><input type="text" name="last_name"/></td>
+            </tr>
+            <tr>
+                <td>${parkName}</td>
+                <td><input type="text" name="park_name"/></td>
             </tr>
             <tr>
                 <td>${email}</td>
-                <td><input name="email" type="text"/></td>
+                <td><input type="text" name="email"/></td>
             </tr>
             <tr>
             <tr>
                 <td>${password}</td>
-                <td><input name="password" type="password"/></td>
+                <td><input type="password" name="password"/></td>
             </tr>
         </table>
         </div>

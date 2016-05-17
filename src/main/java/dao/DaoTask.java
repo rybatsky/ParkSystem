@@ -26,16 +26,18 @@ public class DaoTask {
         connection = getConnection();
     }
 
-    public Task getTaskById(int taskId, Task task) {
+    public Task getTaskById (int taskId, Task task) {
 
-        String query = "SELECT task_id," +
-                "owner_id," +
-                "forester_id," +
-                "type," +
-                "comments," +
-                "done," +
+        String query = "SELECT task_id, " +
+                "owner_id, " +
+                "forester_id, " +
+                "plant, " +
+                "type, " +
+                "comments, " +
+                "done, " +
                 "confirmed " +
-                "FROM tasks";
+                "FROM tasks " +
+                "WHERE task_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, taskId);
@@ -44,34 +46,28 @@ public class DaoTask {
                 task.setTaskId(resultSet.getInt(1));
                 task.setOwnerId(resultSet.getInt(2));
                 task.setForesterId(resultSet.getInt(3));
-                task.setType(resultSet.getString(4));
-                task.setComments(resultSet.getString(5));
-                task.setDone(resultSet.getBoolean(6));
-                task.setConfirmed(resultSet.getBoolean(7));
+                task.setPlant(resultSet.getString(4));
+                task.setType(resultSet.getString(5));
+                task.setComments(resultSet.getString(6));
+                task.setDone(resultSet.getBoolean(7));
+                task.setConfirmed(resultSet.getBoolean(8));
             }
             if (taskId == 0) {
-                logger.error("Cannot perform SQL statement" + query + ". id = 0");
+                logger.error("Cannot perform SQL statement " + query + "\n id = 0");
                 return null;
             }
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
         return task;
     }
 
 
-    public List<Task> getAllTasks(List<Task> tasks) {
+    public List<Task> getAllTasks (List<Task> tasks) {
 
-        String query = "SELECT task_id," +
-                "owner_id," +
-                "forester_id," +
-                "type," +
-                "comments," +
-                "done," +
-                "confirmed " +
-                "FROM tasks";
+        String query = "SELECT * FROM tasks";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -81,29 +77,22 @@ public class DaoTask {
                         resultSet.getInt(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
-                        resultSet.getBoolean(6),
-                        resultSet.getBoolean(7)));
+                        resultSet.getString(6),
+                        resultSet.getBoolean(7),
+                        resultSet.getBoolean(8)));
             }
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "Cannot perform SQL statement " + query);
         }
         return tasks;
     }
 
 
-    public List<Task> getTasksForForester(List<Task> tasks, int foresterId) {
+    public List<Task> getTasksForForester (List<Task> tasks, int foresterId) {
 
-        String query = "SELECT task_id," +
-                "owner_id," +
-                "forester_id," +
-                "type," +
-                "comments," +
-                "done," +
-                "confirmed\n" +
-                "FROM tasks \n" +
-                "WHERE forester_id = ?";
+        String query = "SELECT * FROM tasks WHERE forester_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, foresterId);
@@ -114,57 +103,84 @@ public class DaoTask {
                         resultSet.getInt(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
-                        resultSet.getBoolean(6),
-                        resultSet.getBoolean(7)));
+                        resultSet.getString(6),
+                        resultSet.getBoolean(7),
+                        resultSet.getBoolean(8)));
 
             }
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
         return tasks;
     }
 
+    public List<Task> getTasksForOwner(List<Task> tasks, int ownerId) {
 
-    public int getForesterIdByNames(String firstName, String lastName) {
-
-        int id = 0;
-        String query = "SELECT forester_id from foresters WHERE first_name = ? AND last_name = ?";
+        String query = "SELECT * FROM tasks WHERE owner_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, firstName);
-            preparedStatement.setString(2, lastName);
+            preparedStatement.setInt(1, ownerId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                id = resultSet.getInt("forester_id");
-            }
-            if (id == 0) {
-                throw new SQLException("There's no forester with such id.");
+                tasks.add(new Task(resultSet.getInt(1),
+                        resultSet.getInt(2),
+                        resultSet.getInt(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getBoolean(7),
+                        resultSet.getBoolean(8)));
+
             }
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
-        return id;
+        return tasks;
     }
+
+//    public int getForesterIdByNames(String firstName, String lastName) {
+//
+//        int id = 0;
+//        String query = "SELECT forester_id from foresters WHERE first_name = ? AND last_name = ?";
+//        try {
+//            PreparedStatement preparedStatement = connection.prepareStatement(query);
+//            preparedStatement.setString(1, firstName);
+//            preparedStatement.setString(2, lastName);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()) {
+//                id = resultSet.getInt("forester_id");
+//            }
+//            if (id == 0) {
+//                throw new SQLException("There's no forester with such id.");
+//            }
+//            resultSet.close();
+//            preparedStatement.close();
+//        } catch (SQLException e) {
+//            logger.error("Cannot perform SQL statement" + query);
+//        }
+//        return id;
+//    }
 
 
     public void addTask(Task task) {
 
-        String query = "INSERT INTO tasks (owner_id, forester_id, type, comments) " +
-                "VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO tasks (owner_id, forester_id, plant, type, comments) " +
+                "VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, getOwnerId());
             preparedStatement.setInt(2, getForesterId());
-            preparedStatement.setString(3, task.getType());
-            preparedStatement.setString(4, task.getComments());
+            preparedStatement.setString(3, task.getPlant());
+            preparedStatement.setString(4, task.getType());
+            preparedStatement.setString(5, task.getComments());
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
     }
 
@@ -178,12 +194,13 @@ public class DaoTask {
             preparedStatement.close();
 
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
     }
 
     public void editTask(int taskId,
                          int foresterId,
+                         String plant,
                          String type,
                          String comments,
                          boolean done,
@@ -191,6 +208,7 @@ public class DaoTask {
 
         String query = "UPDATE tasks " +
                 "SET forester_id = ?," +
+                "plant = ?," +
                 "type = ?," +
                 "comments = ?," +
                 "done = ?," +
@@ -199,40 +217,41 @@ public class DaoTask {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, foresterId);
-            preparedStatement.setString(2, type);
-            preparedStatement.setString(3, comments);
-            preparedStatement.setBoolean(4, done);
-            preparedStatement.setBoolean(5, confirmed);
-            preparedStatement.setInt(6, taskId);
+            preparedStatement.setString(2, plant);
+            preparedStatement.setString(3, type);
+            preparedStatement.setString(4, comments);
+            preparedStatement.setBoolean(5, done);
+            preparedStatement.setBoolean(6, confirmed);
+            preparedStatement.setInt(7, taskId);
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
     }
 
 
-    public void editIsDoneTask(int task_id, boolean done) {
+    public void editIsDoneTask(int taskId, boolean done) {
 
         String query = "UPDATE tasks SET done = ? WHERE task_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setBoolean(1, done);
-            preparedStatement.setInt(2, task_id);
+            preparedStatement.setInt(2, taskId);
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
     }
 
-    public int getIdForesterByTaskId(int task_id) {
+    public int getIdForesterByTaskId(int taskId) {
 
         String query = "SELECT forester_id from tasks WHERE task_id = ?";
         int foresterId = 0;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, task_id);
+            preparedStatement.setInt(1, taskId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 foresterId = resultSet.getInt("forester_id");
@@ -240,7 +259,7 @@ public class DaoTask {
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Cannot perform SQL statement" + query);
+            logger.error(e + "\n Cannot perform SQL statement " + query);
         }
         return foresterId;
     }

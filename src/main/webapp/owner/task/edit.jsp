@@ -7,19 +7,20 @@
 <head>
     <fmt:setLocale value="${sessionScope.local}"/>
     <fmt:setBundle basename="local" var="loc"/>
-    <fmt:message bundle="${loc}" key="local.editTask" var="editTask"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.taskId" var="taskId"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.ownerId" var="ownerId"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.forester" var="forester"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.taskType" var="type"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.taskComments" var="comments"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.addNewTask" var="addNewTask"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.done" var="done"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.back" var="back"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.addNewTask" var="addnewtask"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.updateButton" var="update"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.confirmed" var="confirmed"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.logOut" var="logOut"></fmt:message>
+    <fmt:message bundle="${loc}" key="local.editTask" var="editTask"/>
+    <fmt:message bundle="${loc}" key="local.taskId" var="taskId"/>
+    <fmt:message bundle="${loc}" key="local.owner" var="ownerNames"/>
+    <fmt:message bundle="${loc}" key="local.forester" var="forester"/>
+    <fmt:message bundle="${loc}" key="local.plant" var="plant"/>
+    <fmt:message bundle="${loc}" key="local.taskType" var="type"/>
+    <fmt:message bundle="${loc}" key="local.taskComments" var="comments"/>
+    <fmt:message bundle="${loc}" key="local.addNewTask" var="addNewTask"/>
+    <fmt:message bundle="${loc}" key="local.done" var="done"/>
+    <fmt:message bundle="${loc}" key="local.back" var="back"/>
+    <fmt:message bundle="${loc}" key="local.addNewTask" var="addnewtask"/>
+    <fmt:message bundle="${loc}" key="local.updateButton" var="update"/>
+    <fmt:message bundle="${loc}" key="local.confirmed" var="confirmed"/>
+    <fmt:message bundle="${loc}" key="local.logOut" var="logOut"/>
 
     <title>${editTask}</title>
     <link href="/css/style.css" rel="stylesheet">
@@ -32,8 +33,9 @@
         <table>
             <tr>
                 <th>${taskId}</th>
-                <th>${ownerId}</th>
+                <th>${ownerNames}</th>
                 <th>${forester}</th>
+                <th>${plant}</th>
                 <th>${type}</th>
                 <th>${comments}</th>
                 <th>${done}</th>
@@ -58,6 +60,9 @@
                             </option>
                         </c:forEach>
                     </select>
+                </td>
+                <td>
+                    <input type="text" name="plant" value='${task.plant}'/>
                 </td>
                 <td>
                     <input type="text" name="taskType" value='${task.type}'/>

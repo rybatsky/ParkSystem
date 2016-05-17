@@ -7,14 +7,15 @@
 <head>
     <fmt:setLocale value="${sessionScope.local}"/>
     <fmt:setBundle basename="local" var="loc"/>
-    <fmt:message bundle="${loc}" key="local.owner" var="ownerNames"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.forester" var="foresterNames"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.taskType" var="taskType"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.taskComments" var="taskComments"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.addNewTask" var="addNewTask"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.submit" var="done"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.back" var="back"></fmt:message>
-    <fmt:message bundle="${loc}" key="local.logOut" var="logOut"></fmt:message>
+    <fmt:message bundle="${loc}" key="local.owner" var="ownerNames"/>
+    <fmt:message bundle="${loc}" key="local.forester" var="foresterNames"/>
+    <fmt:message bundle="${loc}" key="local.plant" var="plant"/>
+    <fmt:message bundle="${loc}" key="local.taskType" var="taskType"/>
+    <fmt:message bundle="${loc}" key="local.taskComments" var="taskComments"/>
+    <fmt:message bundle="${loc}" key="local.addNewTask" var="addNewTask"/>
+    <fmt:message bundle="${loc}" key="local.submit" var="done"/>
+    <fmt:message bundle="${loc}" key="local.back" var="back"/>
+    <fmt:message bundle="${loc}" key="local.logOut" var="logOut"/>
 
     <title>${addNewTask}</title>
     <link href="/css/style.css" rel="stylesheet">
@@ -26,7 +27,13 @@
         <div class="add">
         <table>
             <tr>
-                <td>${ownerNames}</td>
+                <th>${ownerNames}</th>
+                <th>${foresterNames}</th>
+                <th>${plant}</th>
+                <th>${taskType}</th>
+                <th>${taskComments}</th>
+            </tr>
+            <tr>
                 <td>
                     <select disabled required name="NamesOwner">
                         <option value='${owner.ownerId}'>
@@ -35,26 +42,18 @@
                         </option>
                     </select>
                 </td>
-            </tr>
-            <tr>
-                <td>${taskType}</td>
-                <td><input type="text" name="type"/></td>
-            </tr>
-            <tr>
-                <td>${taskComments}</td>
-                <td><input type="text" name="comments"/></td>
-            </tr>
-            <tr>
-                <td>${foresterNames}</td>
                 <td><select required name="NamesForester">
                     <c:forEach var="forester" items="${foresters}">
                         <option value='${forester.foresterId}'>
-                            ${forester.lastName}
-                            ${forester.firstName}
+                                ${forester.lastName}
+                                ${forester.firstName}
                         </option>
                     </c:forEach>
                 </select>
                 </td>
+                <td><input type="text" name="plant"/></td>
+                <td><input type="text" name="type"/></td>
+                <td><input type="text" name="comments"/></td>
             </tr>
         </table>
         </div>
