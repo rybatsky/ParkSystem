@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
+ * Owner's log in servlet.
  * @author Anastasiia Rybakova
  * @since 04.2016
  */

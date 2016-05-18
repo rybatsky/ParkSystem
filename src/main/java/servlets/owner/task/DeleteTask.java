@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
+ * Servlet deletes task.
  * @author Anastasiia Rybakova
  * @since 04.2016
  */

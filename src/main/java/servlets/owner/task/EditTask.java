@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Servlet edits task.
  * @author Anastasiia Rybakova
  * @since 04.2016
  */

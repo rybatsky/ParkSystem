@@ -21,6 +21,7 @@ import java.util.List;
 import static dao.DbConnection.getConnection;
 
 /**
+ * Shows all tasks for current owner.
  * @author Anastasiia Rybakova
  * @since 04.2016
  */

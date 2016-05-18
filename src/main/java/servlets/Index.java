@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * Servlet index page.
  * @author Anastasiia Rybakova
  * @since 04.2016
  */

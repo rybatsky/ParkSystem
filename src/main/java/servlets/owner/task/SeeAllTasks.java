@@ -18,6 +18,7 @@ import java.util.List;
 import static dao.DbConnection.getConnection;
 
 /**
+ * Shows all tasks.
  * @author Anastasiia Rybakova
  * @since 04.2016
  */

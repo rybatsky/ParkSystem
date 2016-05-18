@@ -12,7 +12,7 @@
     <fmt:message bundle="${loc}" key="local.signUpForester" var="signUp"/>
     <fmt:message bundle="${loc}" key="local.back" var="back"/>
 
-    <title>${noSuch}</title
+    <title>${noSuch}</title>
     <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>

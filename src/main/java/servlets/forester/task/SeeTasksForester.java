@@ -21,6 +21,7 @@ import java.util.List;
 import static dao.DbConnection.getConnection;
 
 /**
+ * Shows all tasks for current forester.
  * @author Anastasiia Rybakova
  * @since 04.2016
  */

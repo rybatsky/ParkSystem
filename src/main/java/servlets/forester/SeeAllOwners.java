@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Shows all owners.
  * @author Anastasiia Rybakova
  * @since 04.2016
  */

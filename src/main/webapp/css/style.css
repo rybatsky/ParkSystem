@@ -42,14 +42,6 @@ table {
     text-align: left;
 }
 
-/*.login,*/
-/*.sign {*/
-    /*padding: 50px;*/
-    /*background-color: aquamarine;*/
-    /*margin-left: 600px;*/
-    /*margin-right: 600px;*/
-/*}*/
-
 .tasks table,
 .foresters table,
 .add table,
@@ -58,7 +50,6 @@ table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 12px;
     margin: auto;
-    /*margin: 45px;*/
     width: 480px;
     text-align: left;
     border-collapse: collapse;
@@ -76,7 +67,6 @@ table {
     color: #039;
     text-transform: uppercase;
     border: 1px solid #0865c2;
-    /*border-bottom-color: #fff;*/
 }
 
 .tasks table td,
@@ -87,7 +77,6 @@ table {
     padding: 10px 20px;
     color: #669;
     border: 1px dashed #6cf;
-    /*border-right: 1px dashed #6cf;*/
 }
 
 .time {

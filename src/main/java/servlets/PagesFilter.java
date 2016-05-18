@@ -2,26 +2,26 @@ package servlets;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
+ * Pages filter.
+ * Checks, whether user is logged in.
  * @author Anastasiia Rybakova
  * @since 04.2016
  */
 
-//@WebFilter(filterName = "PagesFilter",
-//        urlPatterns = "/owner/task/all," +
-//                "/forester/task/all," +
-//                "/owner/task/add," +
-//                "/owner/task/delete," +
-//                "/owner/task/edit," +
-//                "/forester/task/done," +
-//                "/owner/foresters," +
-//                "/forester/owners")
+@WebFilter(filterName = "PagesFilter",
+        urlPatterns = {"/owner/task/add",
+                "/owner/task/all",
+                "/owner/task/delete",
+                "/owner/task/edit",
+                "/forester/task/all",
+                "/forester/task/done",
+                "/forester/owners"})
 public class PagesFilter implements Filter {
 
     private FilterConfig config;

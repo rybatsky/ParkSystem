@@ -9,12 +9,17 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  * Custom tag library.
+ * Shows current data ant time.
  * @author Anastasiia Rybakova
  * @since  05.2016
  */
 public class DateTime extends TagSupport{
 
     private String mFormat;
+
+    public void setFormat(String pFormat) {
+        mFormat = pFormat;
+    }
 
     public int doStartTag() throws JspException {
         try {
