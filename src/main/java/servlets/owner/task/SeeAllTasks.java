@@ -2,6 +2,7 @@ package servlets.owner.task;
 
 import dao.DaoTask;
 import model.Task;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -17,11 +18,14 @@ import java.util.List;
 import static dao.DbConnection.getConnection;
 
 /**
- * Created by rybatsky
+ * @author Anastasiia Rybakova
+ * @since 04.2016
  */
 
 @WebServlet("/owner/tasks")
 public class SeeAllTasks extends HttpServlet {
+
+    private final static Logger logger = Logger.getLogger(servlets.owner.task.SeeAllTasks.class);
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
@@ -33,7 +37,7 @@ public class SeeAllTasks extends HttpServlet {
         try {
             dao = new DaoTask();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         request.getSession(true);
         request.setAttribute("allTasks", "All tasks");
@@ -44,7 +48,7 @@ public class SeeAllTasks extends HttpServlet {
         try {
             context.getRequestDispatcher("/owner/task/all.jsp").forward(request, response);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
     }
 }

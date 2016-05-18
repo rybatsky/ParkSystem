@@ -12,20 +12,34 @@ import java.util.List;
 import static dao.DbConnection.getConnection;
 
 /**
- * Created by rybatsky
+ * Tasks access class.
+ * Contains methods with SQL queries.
+ * @see Task
+ * @author Anastasiia Rybakova
+ * @since 04.2016
  */
-
 public class DaoTask {
 
-    private final static Logger logger = Logger.getLogger(DbConnection.class);
+    private final static Logger logger = Logger.getLogger(dao.DaoTask.class);
     private int ownerId;
     private int foresterId;
     private Connection connection;
 
+    /**
+     * DaoOTask constructor.
+     * Creates database connection.
+     * @throws SQLException
+     */
     public DaoTask() throws SQLException {
         connection = getConnection();
     }
 
+    /**
+     * Returns task by its id.
+     * @param taskId task id
+     * @param task
+     * @return task
+     */
     public Task getTaskById (int taskId, Task task) {
 
         String query = "SELECT task_id, " +
@@ -64,7 +78,11 @@ public class DaoTask {
         return task;
     }
 
-
+    /**
+     * Returns list of all tasks.
+     * @param tasks
+     * @return list of all tasks
+     */
     public List<Task> getAllTasks (List<Task> tasks) {
 
         String query = "SELECT * FROM tasks";
@@ -89,7 +107,12 @@ public class DaoTask {
         return tasks;
     }
 
-
+    /**
+     * Returns list of tasks for current forester.
+     * @param tasks
+     * @param foresterId current forester's id
+     * @return list of tasks
+     */
     public List<Task> getTasksForForester (List<Task> tasks, int foresterId) {
 
         String query = "SELECT * FROM tasks WHERE forester_id = ?";
@@ -116,6 +139,12 @@ public class DaoTask {
         return tasks;
     }
 
+    /**
+     * Returns list of tasks for current owner.
+     * @param tasks
+     * @param ownerId current owner's id
+     * @return list of tasks
+     */
     public List<Task> getTasksForOwner(List<Task> tasks, int ownerId) {
 
         String query = "SELECT * FROM tasks WHERE owner_id = ?";
@@ -142,30 +171,10 @@ public class DaoTask {
         return tasks;
     }
 
-//    public int getForesterIdByNames(String firstName, String lastName) {
-//
-//        int id = 0;
-//        String query = "SELECT forester_id from foresters WHERE first_name = ? AND last_name = ?";
-//        try {
-//            PreparedStatement preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setString(1, firstName);
-//            preparedStatement.setString(2, lastName);
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            while (resultSet.next()) {
-//                id = resultSet.getInt("forester_id");
-//            }
-//            if (id == 0) {
-//                throw new SQLException("There's no forester with such id.");
-//            }
-//            resultSet.close();
-//            preparedStatement.close();
-//        } catch (SQLException e) {
-//            logger.error("Cannot perform SQL statement" + query);
-//        }
-//        return id;
-//    }
-
-
+    /**
+     * Adds new task in database.
+     * @param task
+     */
     public void addTask(Task task) {
 
         String query = "INSERT INTO tasks (owner_id, forester_id, plant, type, comments) " +
@@ -184,6 +193,10 @@ public class DaoTask {
         }
     }
 
+    /**
+     * Deletes task from database.
+     * @param taskId task id
+     */
     public void delTask(int taskId) {
 
         String query = "DELETE FROM tasks WHERE task_id = ?";
@@ -198,6 +211,16 @@ public class DaoTask {
         }
     }
 
+    /**
+     * Edits task.
+     * @param taskId task id
+     * @param foresterId forester id
+     * @param plant
+     * @param type
+     * @param comments
+     * @param done
+     * @param confirmed
+     */
     public void editTask(int taskId,
                          int foresterId,
                          String plant,
@@ -230,7 +253,11 @@ public class DaoTask {
         }
     }
 
-
+    /**
+     * Changes task's status: done/undone.
+     * @param taskId task id
+     * @param done
+     */
     public void editIsDoneTask(int taskId, boolean done) {
 
         String query = "UPDATE tasks SET done = ? WHERE task_id = ?";
@@ -245,6 +272,11 @@ public class DaoTask {
         }
     }
 
+    /**
+     * Gets forester's id by task's id.
+     * @param taskId task id
+     * @return forester id
+     */
     public int getIdForesterByTaskId(int taskId) {
 
         String query = "SELECT forester_id from tasks WHERE task_id = ?";

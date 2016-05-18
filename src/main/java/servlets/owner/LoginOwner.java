@@ -1,6 +1,7 @@
 package servlets.owner;
 
 import dao.DaoOwner;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,11 +13,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by rybatsky
+ * @author Anastasiia Rybakova
+ * @since 04.2016
  */
 
 @WebServlet("/owner/login")
 public class LoginOwner extends HttpServlet {
+
+    private final static Logger logger = Logger.getLogger(servlets.owner.LoginOwner.class);
     private DaoOwner dao;
 
     @Override
@@ -34,7 +38,7 @@ public class LoginOwner extends HttpServlet {
         try {
             dao = new DaoOwner();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         if (dao.isOwnerCorrect(request.getParameter("email"), request.getParameter("password"))) {
             request.getSession().setAttribute("email", request.getParameter("email"));

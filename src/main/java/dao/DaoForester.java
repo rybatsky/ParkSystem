@@ -9,18 +9,30 @@ import java.util.List;
 import static dao.DbConnection.getConnection;
 
 /**
- * Created by rybatsky
+ * Foresters access class.
+ * Contains methods with SQL queries.
+ * @see Forester
+ * @author Anastasiia Rybakova
+ * @since 04.2016
  */
-
 public class DaoForester {
 
-    private final static Logger logger = Logger.getLogger(DbConnection.class);
+    private final static Logger logger = Logger.getLogger(dao.DaoForester.class);
     private Connection connection;
 
+    /**
+     * DaoForester constructor.
+     * Creates database connection.
+     * @throws SQLException
+     */
     public DaoForester() throws SQLException {
         connection = getConnection();
     }
 
+    /**
+     * Adds new forester in database.
+     * @param forester
+     */
     public void addForester(Forester forester) {
 
         String query = "INSERT INTO foresters (first_name, last_name, email, password) " +
@@ -37,6 +49,12 @@ public class DaoForester {
         }
     }
 
+    /**
+     * Checks, whether there's forester with such email and password.
+     * @param email forester's email
+     * @param password forester's password
+     * @return true if there's such forester
+     */
     public boolean isForesterCorrect(String email, String password) {
 
         if (email == null || password == null)
@@ -60,6 +78,11 @@ public class DaoForester {
         return result != 0;
     }
 
+    /**
+     * Returns list of all foresters.
+     * @param foresters list of foresters
+     * @return list of all foresters
+     */
     public List<Forester> getAllForesters(List<Forester> foresters) {
 
         String query = "SELECT * FROM foresters";
@@ -81,6 +104,10 @@ public class DaoForester {
         return foresters;
     }
 
+    /**
+     *
+     * @param foresters
+     */
     public void getForestersNamesAndId(List<Forester> foresters) {
 
         String query = "SELECT forester_id, first_name, last_name FROM foresters";
@@ -99,6 +126,11 @@ public class DaoForester {
         }
     }
 
+    /**
+     * Returns forester by his email.
+     * @param email forester's email
+     * @return forester by his email
+     */
     public Forester getForesterByEmail(String email) {
 
         Forester forester = new Forester();

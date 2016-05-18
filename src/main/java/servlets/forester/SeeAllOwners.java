@@ -1,9 +1,9 @@
 package servlets.forester;
 
-import dao.DaoForester;
 import dao.DaoOwner;
 import dao.DbConnection;
 import model.Owner;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -17,11 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rybatsky
+ * @author Anastasiia Rybakova
+ * @since 04.2016
  */
 
 @WebServlet("/forester/owners")
 public class SeeAllOwners extends HttpServlet {
+
+    private final static Logger logger = Logger.getLogger(servlets.forester.SeeAllOwners.class);
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
@@ -35,7 +38,7 @@ public class SeeAllOwners extends HttpServlet {
         try {
             dao = new DaoOwner();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         if (dao != null) {
                 owners = dao.getAllOwners(owners);
@@ -44,7 +47,7 @@ public class SeeAllOwners extends HttpServlet {
         try {
             context.getRequestDispatcher("/forester/owners.jsp").forward(request, response);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
     }
 }

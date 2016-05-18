@@ -12,18 +12,30 @@ import java.util.List;
 import static dao.DbConnection.getConnection;
 
 /**
- * Created by rybatsky
+ * Owners access class.
+ * Contains methods with SQL queries.
+ * @see Owner
+ * @author Anastasiia Rybakova
+ * @since 04.2016
  */
-
 public class DaoOwner {
 
-    private final static Logger logger = Logger.getLogger(DbConnection.class);
+    private final static Logger logger = Logger.getLogger(dao.DaoOwner.class);
     private Connection connection;
 
+    /**
+     * DaoOwner constructor.
+     * Creates database connection.
+     * @throws SQLException
+     */
     public DaoOwner() throws SQLException {
         connection = getConnection();
     }
 
+    /**
+     * Adds new owner in database.
+     * @param owner
+     */
     public void addOwner(Owner owner) {
 
         String query = "INSERT INTO owners (first_name, last_name, park_name, email, password) " +
@@ -41,6 +53,12 @@ public class DaoOwner {
         }
     }
 
+    /**
+     * Checks, whether there's owner with such email and password.
+     * @param email owner's email
+     * @param password owner's password
+     * @return true if there's such owner
+     */
     public boolean isOwnerCorrect(String email, String password) {
 
         if (email == null || password == null)
@@ -62,6 +80,11 @@ public class DaoOwner {
         return result != 0;
     }
 
+    /**
+     * Returns list of all owners.
+     * @param owners list of owners
+     * @return list of all owners
+     */
     public List<Owner> getAllOwners(List<Owner> owners) {
 
         String query = "SELECT * FROM owners";
@@ -84,6 +107,11 @@ public class DaoOwner {
         return owners;
     }
 
+    /**
+     * Returns owner by his email.
+     * @param email owner's email
+     * @return owner by his email
+     */
     public Owner getOwnerByEmail(String email) {
 
         Owner owner = new Owner();
@@ -104,32 +132,4 @@ public class DaoOwner {
         }
         return owner;
     }
-
-//    public Owner getOwnerById(int id) {
-//
-//        Owner owner = new Owner();
-//        String query = "SELECT * from owners WHERE owner_id = ?";
-//        try {
-//            PreparedStatement preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setInt(1, id);
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            while (resultSet.next()) {
-//                owner.setOwnerId(id);
-//                owner.setLastName(resultSet.getString("first_name"));
-//                owner.setFirstName(resultSet.getString("last_name"));
-//                owner.setEmail(resultSet.getString("park_name"));
-//                owner.setParkName(resultSet.getString("email"));
-//                owner.setPassword(resultSet.getString("password"));
-//            }
-//            if (id == 0) {
-//                System.out.println("id = 0");
-//                throw new SQLException();
-//            }
-//            resultSet.close();
-//            preparedStatement.close();
-//        } catch (SQLException e) {
-//            logger.error(e + "\n Cannot perform SQL statement " + query);
-//        }
-//        return owner;
-//    }
 }

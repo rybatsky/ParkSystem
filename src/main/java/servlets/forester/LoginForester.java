@@ -1,6 +1,7 @@
 package servlets.forester;
 
 import dao.DaoForester;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,11 +13,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by rybatsky
+ * @author Anastasiia Rybakova
+ * @since 04.2016
  */
 
 @WebServlet("/forester/login")
 public class LoginForester extends HttpServlet {
+
+    private final static Logger logger = Logger.getLogger(servlets.forester.LoginForester.class);
     private DaoForester dao;
 
     @Override
@@ -34,7 +38,7 @@ public class LoginForester extends HttpServlet {
         try {
             dao = new DaoForester();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         if (dao.isForesterCorrect(request.getParameter("email"), request.getParameter("password"))) {
             request.getSession().setAttribute("email", request.getParameter("email"));

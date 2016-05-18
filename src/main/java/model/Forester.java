@@ -1,7 +1,10 @@
 package model;
 
 /**
- * Created by rybatsky
+ * Model forester class.
+ * Contains constructors, setters and getters.
+ * @author Anastasiia Rybakova
+ * @since 04.2016
  */
 
 public class Forester {

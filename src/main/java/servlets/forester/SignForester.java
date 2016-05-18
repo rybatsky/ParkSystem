@@ -12,7 +12,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by rybatsky
+ * @author Anastasiia Rybakova
+ * @since 04.2016
  */
 
 @WebServlet("/forester/signUp")

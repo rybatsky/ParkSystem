@@ -4,6 +4,7 @@ import dao.DaoForester;
 import dao.DaoTask;
 import model.Forester;
 import model.Task;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -20,11 +21,14 @@ import java.util.List;
 import static dao.DbConnection.getConnection;
 
 /**
- * Created by rybatsky
+ * @author Anastasiia Rybakova
+ * @since 04.2016
  */
 
 @WebServlet("/forester/task/all")
 public class SeeTasksForester extends HttpServlet {
+
+    private final static Logger logger = Logger.getLogger(servlets.forester.task.SeeTasksForester.class);
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
@@ -40,7 +44,7 @@ public class SeeTasksForester extends HttpServlet {
             dao = new DaoTask();
             daoForester = new DaoForester();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         String email = (String) session.getAttribute("email");
         if (daoForester != null) {
@@ -61,7 +65,7 @@ public class SeeTasksForester extends HttpServlet {
         try {
             context.getRequestDispatcher("/forester/task/all.jsp").forward(request, response);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
     }
 }

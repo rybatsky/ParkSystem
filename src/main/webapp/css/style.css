@@ -90,6 +90,14 @@ table {
     /*border-right: 1px dashed #6cf;*/
 }
 
+.time {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    text-align: left;
+}
+
 .language {
     position: absolute;
     left: -10px;

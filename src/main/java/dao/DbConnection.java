@@ -10,12 +10,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Created by rybatsky
+ * Class creates database connection.
+ * @author Anastasiia Rybakova
+ * @since 04.2016
  */
-
 public class DbConnection {
 
-    private final static Logger logger = Logger.getLogger(DbConnection.class);
+    private final static Logger logger = Logger.getLogger(dao.DbConnection.class);
 
     public static Connection getConnection() {
 

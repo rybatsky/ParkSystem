@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by rybatsky
+ * Servlet changes task's status: done/undone.
+ * @author Anastasiia Rybakova
+ * @since 04.2016
  */
 
 @WebServlet("/forester/task/done")
